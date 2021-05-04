@@ -4,10 +4,10 @@
 (defmulti multimethod-without-args
  (fn [keyword-arg] keyword-arg))
 
-(defmethod multimethod-without-args :first [_]
+(defmethod multimethod-without-args :first []
  (str "Hello, World!"))
 
-(defmethod multimethod-without-args :second [_]
+(defmethod multimethod-without-args :second []
  (str "Hello there"))
 
 (defmulti multimethod-with-args
@@ -26,7 +26,7 @@
 
 (meditations
  "A multimethod takes one or more arguments to dispatch on"
- (= __
+ (= "Hello, World!"
     (multimethod-without-args :first))
 
  "Though it can be ignored and represented by _ in defmethods"
@@ -37,7 +37,7 @@
  (= __
     (multimethod-with-args :path-one {:first-opt 1
                                       :second-opt 2}))
- 
+
  "This allows us to do something different in each method implementation"
  (= __
     (multimethod-with-args :path-two {:first-opt 1
